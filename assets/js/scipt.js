@@ -2,8 +2,8 @@ var startTime = 6;
 var endTime = 18;
 var daysObject;
 var hourUlId;
-var now = luxon.DateTime.local();
-var luxonObject;
+var luxonObject = luxon.DateTime.local();
+
 
 //Create Schedule Container and Sticky-top
 function createContainer(luxonObject) {
@@ -71,7 +71,9 @@ function createSchedule(luxonObject1) {
     }
     console.log("List Created");
     //Audit tasks after list creation
-    dueAudit(luxonObject1, now);
+    const time2 = new luxon.DateTime.now();
+    console.log(time2);
+    dueAudit(luxonObject1, time2);
 }
 
 //Retrieve local storage item for selected day
@@ -156,14 +158,14 @@ function dueAudit(luxonObject3, checkTimeObject) {
 }
 
 //Interval to change dueAudit check hour
-setInterval(function() {
+setInterval(function () {
     const time = new luxon.DateTime.now();
-    dueAudit(now, time);
-}, 1000 * (60 * 5));
+    dueAudit(luxonObject, time);
+}, 1000 * 60);
+
 //When task text item is clicked 
 $("body").on("click", ".task-item", function () {
     //Create input field
-    console.log("test");
     var inputField = $("<input>").
     addClass("list-group-item task-item-input")
         .attr("placeholder", "Enter text");
@@ -183,7 +185,6 @@ $("body").on("click", ".task-item", function () {
 
 
         $(this).replaceWith(taskLi);
-        //storeCurrentDay();
     })
 })
 
@@ -196,12 +197,13 @@ $("body").on("click", ".save-item", function (event) {
 })
 
 $("#preferences-modal").on("show.bs.modal", function () {
-    var jar = dateFormatChanger("/", "-", now.toLocaleString(luxon.DateTime.DATE_SHORT))
+    var jar = dateFormatChanger("/", "-", luxonObject.toLocaleString(luxon.DateTime.DATE_SHORT))
     $(".date-input").val(jar);
     $("#start-time-number").val(amOrPm(startTime));
     $("#end-time-number").val(amOrPm(endTime));
 })
 
+//Used to reconcile / usage in luxon with - usage in datepicker
 function dateFormatChanger(changeFrom, changeTo, string) {
     var inter = string.replace(changeFrom, changeTo);
     var changed = inter.replace(changeFrom, changeTo);
@@ -248,6 +250,7 @@ $("#preferences-modal").on("click", ".btn-save", function () {
 
 })
 
+//Check validity of new times
 function checkNewTimes(num1, num2, val1, val2) {
     if (isNaN(num1) || num1 >= 13) {
         window.alert("Please enter a valid time");
@@ -293,6 +296,7 @@ function storeCurrentDay() {
     storeObject();
 }
 
+//Store days object in local storage
 function storeObject() {
     let objectString = JSON.stringify(daysObject);
     console.log("Stringify Object: " + objectString);
@@ -300,8 +304,7 @@ function storeObject() {
 
 }
 
-
-
+//Create datepicker
 $(".date-input").datepicker({
     dateFormat: "m-d-yy",
 })
@@ -309,5 +312,5 @@ $(".date-input").datepicker({
 //When document is ready, call createContainer on current day (luxon object)
 $("document").ready(function () {
     console.log("Document Ready");
-    createContainer(now);
+    createContainer(luxonObject);
 })
