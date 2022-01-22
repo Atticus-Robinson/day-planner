@@ -2,10 +2,10 @@
 
 - [X] Sitcky header with current date and time
 - [ ] Interval check task color
-- [ ] Move tasks around
-- [ ] Choose different days
-- [ ] Put time change instructions in readme
-- [ ] Settings modal
+- [X] Choose different days
+- [X] Settings modal
 - [ ] Alternate views: full page, full box etc.
-- [ ] Save all tasks
-- [ ] Jumbotron media padding
+- [ ] Save all tasks for day (storeCurrentDay())
+- [X] Min max for modal selectors
+
+- [ ] Combine object storage and click event into one??

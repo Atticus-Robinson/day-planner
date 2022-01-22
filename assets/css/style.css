@@ -1,3 +1,10 @@
+:root {
+  --themeBlue: #17a2b8;
+  --pastDue: rgba(244, 113, 116, 0.3);
+  --currentDue: rgba(235, 212, 128, 0.3);
+  --futureDue: rgba(166, 210, 162, 0.3);
+}
+
 header {
   font-family: 'Raleway', sans-serif;
   height: 30vh;
@@ -5,12 +12,47 @@ header {
 
 .jumbotron {
   padding-top: 2rem;
+  height: auto;
 }
 
-.bi-sliders {
-  position: absolute;
-  left: 80%;
-  cursor: pointer;
+.jumbotron button {
+  height: 40%;
+  width: auto;
+}
+
+.modal-content {
+  font-family: 'Raleway', sans-serif;
+}
+
+.modal-header .modal-footer {
+  padding: 0.7rem;
+}
+
+.modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.modal-body p{
+  width: 18%;
+}
+
+.modal-body input {
+  width: 10%;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.style-button {
+  background-color: var(--themeBlue);
+  color: white;
+  border-style: none;
+  border-radius: 0.25rem;
 }
 
 body {
@@ -53,8 +95,66 @@ body {
   align-content: center;
   justify-content: center;
   cursor: pointer;
+  align-items: center;
 }
 
 .bi-caret-down {
   left: auto;
+}
+
+.date-input {
+  height: 40%;
+  width: auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ui-datepicker {
+  background-color: whitesmoke;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.ui-datepicker-header {
+  border-radius: 0.25rem;
+}
+
+.ui-datepicker-prev *, .ui-datepicker-next *{
+  border-bottom: 0.5px solid black;
+  margin-right: 00.25rem;
+  cursor: pointer;
+}
+
+.ui-datepicker-calendar * {
+  text-decoration: none;
+  color: black;
+
+}
+
+.ui-datepicker-today {
+  background-color: var(--themeBlue);
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.ui-datepicker-current-day {
+  background-color: wheat;
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.past-due {
+  color: black;
+  background-color: var(--pastDue);
+}
+
+.current-due {
+  color: black;
+  background-color: var(--currentDue);
+}
+
+.future-due {
+  color: black;
+  background-color: var(--futureDue);
 }

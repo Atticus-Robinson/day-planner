@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;500&display=swap" rel="stylesheet">
@@ -17,20 +16,69 @@
 
 <body>
   <header class="jumbotron">
-    <span class="lead bi bi-sliders"> Prefrences</span>
-    <h1 class="display-3">Work Day Scheduler</h1>
+    <div class="row">
+      <h1 class="display-3 col col-11">Work Day Scheduler</h1>
+      <button type="button" class="style-button bi bi-sliders col col-1" data-toggle="modal"
+        data-target="#preferences-modal"> Prefrences</button>
+    </div>
     <p class="lead"> A simple calendar app for scheduling your work day</p>
-    
-    
   </header>
-  <div class="schedule-container">
-    <p class="sticky-top text-center bg-info text-white" id="date-sticky"></p>
-    
-    
+
+  <!-- Modal -->
+  <div class="modal fade" id="preferences-modal" tabindex="-1" role="dialog" aria-labelledby="preferences-modal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <!--Modal Header-->
+        <div class="modal-header">
+          <h5 class="modal-title" id="task-form-modal">Prefrences</h5>
+        </div>
+        <!--Modal Body-->
+        <div class="modal-body">
+          <!--Start Time Input-->
+          <p>Start time: </p>
+          <input type="number" class="time-input-field" id="start-time-number" min="1" max="12">
+          <select class="amPmSelect" id="start-time-selector">
+            <option value="AM" selected>AM</option>
+            <option value="PM">PM</option>
+          </select>
+          <div class="break"></div>
+
+          <!--End Time Input-->
+          <p>End time: </p>
+          <input type="number" class="time-input-field" id="end-time-number" min="1" max="12">
+          <select class="amPmSelect" id="end-time-selector">
+            <option value="AM">AM</option>
+            <option value="PM" selected>PM</option>
+          </select>
+          <div class="break"></div>
+
+          <!--Date Picker-->
+          <p>Date: </p>
+          <input type="text" class="date-input">
+          
+        </div>
+        <!--Modal Footer-->
+        <div class="modal-footer">
+          <button type="button" class="style-button btn btn-close" data-dismiss="modal">Close</button>
+          <button type="button" class="style-button btn btn-save">Save Changes</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js" integrity="sha256-eWGhq5jRZ5QSi+PQuJt0eg4+hGCTwtsR9Qo+mC6Lyco=" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"
+    integrity="sha256-eWGhq5jRZ5QSi+PQuJt0eg4+hGCTwtsR9Qo+mC6Lyco=" crossorigin="anonymous"></script>
   <script src="./assets/js/scipt.js"></script>
 </body>
 
