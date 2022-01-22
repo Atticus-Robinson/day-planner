@@ -196,6 +196,22 @@ $("body").on("click", ".save-item", function (event) {
     storeTask(id);
 })
 
+//Store task text into matching object => array, called when save button is clicked on task line
+function storeTask(taskId) {
+    let taskText = $(".schedule-container").find("#" + taskId).find(".task-item").text();
+    daysObject[selectedDateShort][(taskId)] = taskText;
+    console.log("Store Task Run");
+    storeObject();
+}
+
+//Store days object in local storage
+function storeObject() {
+    let objectString = JSON.stringify(daysObject);
+    console.log("Stringify Object: " + objectString);
+    localStorage.setItem("daysObject", objectString);
+
+}
+
 $("#preferences-modal").on("show.bs.modal", function () {
     var jar = dateFormatChanger("/", "-", luxonObject.toLocaleString(luxon.DateTime.DATE_SHORT))
     $(".date-input").val(jar);
@@ -276,13 +292,6 @@ function checkNewTimes(num1, num2, val1, val2) {
     return true;
 }
 
-//Store task text into matching object => array, called when save button is clicked on task line
-function storeTask(taskId) {
-    let taskText = $(".schedule-container").find("#" + taskId).find(".task-item").text();
-    daysObject[selectedDateShort][(taskId)] = taskText;
-    console.log("Store Task Run");
-    storeObject();
-}
 
 //Store entire day's tasks into matching array, called on save day click
 function storeCurrentDay() {
@@ -294,14 +303,6 @@ function storeCurrentDay() {
     }
     console.log("Store Day Run: " + daysObject);
     storeObject();
-}
-
-//Store days object in local storage
-function storeObject() {
-    let objectString = JSON.stringify(daysObject);
-    console.log("Stringify Object: " + objectString);
-    localStorage.setItem("daysObject", objectString);
-
 }
 
 //Create datepicker
